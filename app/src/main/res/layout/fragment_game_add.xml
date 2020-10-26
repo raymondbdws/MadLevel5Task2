@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
@@ -46,6 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilTitle">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPlatform"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
@@ -65,6 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilPlatform">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiDay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
@@ -81,6 +84,7 @@
             app:layout_constraintTop_toTopOf="@+id/tilDay">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiMonth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
@@ -97,6 +101,7 @@
             app:layout_constraintTop_toTopOf="@+id/tilMonth">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiYear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
