@@ -1,19 +1,23 @@
 package com.rayray.madlevel5task2.ui
 
+import android.app.DatePickerDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.rayray.madlevel5task2.R
 import com.rayray.madlevel5task2.model.Game
 import com.rayray.madlevel5task2.model.GameViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_game_add.*
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -22,6 +26,11 @@ import java.util.*
 class AddGameFragment : Fragment() {
 
     private val viewModel: GameViewModel by viewModels()
+
+    val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    var month = c.get(Calendar.MONTH)
+    var day = c.get(Calendar.DAY_OF_MONTH)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,37 +43,63 @@ class AddGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        tiDay.setOnClickListener {
+            val dpd = DatePickerDialog(
+                this.requireContext(),
+                { view: DatePicker, year: Int, month: Int, day: Int ->
+                    //update UI
+                    tiDay.setText("$day")
+                    tiMonth.setText("$month")
+                    tiYear.setText("$year")
+                    Toast.makeText(context, "$year $month $day", Toast.LENGTH_SHORT).show()
+                },
+                year,
+                month,
+                day
+            )
+            dpd.show()
+        }
+        saveFab.setOnClickListener {
+            onAddGame()
+            findNavController().popBackStack()
+        }
         observeGames()
+
     }
 
     private fun observeGames() {
-       //todo
+        //todo
     }
 
     private fun onAddGame() {
         val gameTitle = tiTitle.text.toString()
         val gamePlatform = tiPlatform.text.toString()
-        val day = tiDay.text.toString().toInt()
-        val month = tiMonth.text.toString().toInt()
-        val year = tiYear.text.toString().toInt()
+//        val day = tiDay.text.toString()
+//        val month = tiMonth.text.toString()
+//        val year = tiYear.text.toString()
+//        val day = tiDay.text.toString()
+//        val month = tiMonth.text.toString()
+//        val year = tiYear.text.toString()
 
-        val localDate = LocalDate.of(year, month, day)
+        val formatter = DateTimeFormatter.ofPattern("yyyy MM dd")
+        val parsedDate = LocalDate.parse("$year $month $day", formatter)
+        val result: ZonedDateTime = parsedDate.atStartOfDay(ZoneId.systemDefault())
 
-        if (gameTitle.isNotBlank() && gamePlatform.isNotBlank()
-            && day.toString().isNotBlank() && month.toString().isNotBlank() && year.toString()
-                .isNotBlank()
-        ) {
+
+
+        if (gameTitle.isNotBlank() && gamePlatform.isNotBlank()) {
             viewModel.insertGame(
                 Game(
-                    0, gameTitle, gamePlatform, Date.from(
-                        localDate.atStartOfDay(
-                            ZoneId.systemDefault()
-                        ).toInstant()
-                    )
+                    gameTitle, gamePlatform, Date.from(result.toInstant())
                 )
             )
         } else {
             Toast.makeText(activity, R.string.not_valid_game, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun parseToDate(date: String): Date {
+        return java.sql.Date.valueOf(date)
     }
 }

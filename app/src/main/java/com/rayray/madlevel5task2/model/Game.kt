@@ -8,10 +8,6 @@ import java.util.*
 @Entity(tableName = "game_table")
 data class Game(
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int? = null,
-
     @ColumnInfo(name = "title")
     var title: String,
 
@@ -19,6 +15,9 @@ data class Game(
     var platform: String,
 
     @ColumnInfo(name = "releaseDate")
-    var releaseDate: Date
+    var releaseDate: Date,
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int? = null,
 )

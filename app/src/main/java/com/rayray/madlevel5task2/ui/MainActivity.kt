@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id in arrayOf(R.id.addGameFragment)){
                 addFab.hide()
-                saveFab.show()
+                //saveFab.show()
             }else{
                 addFab.show()
-                saveFab.hide()
+                //saveFab.hide()
             }
         }
     }
