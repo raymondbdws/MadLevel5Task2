@@ -10,5 +10,6 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="not_valid_game">Alle velden moeten ingevuld zijn!</string>
+    <string name="deleted_games">Deleted all games</string>
 
 </resources>

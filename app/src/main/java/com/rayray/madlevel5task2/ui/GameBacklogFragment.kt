@@ -43,7 +43,6 @@ class GameBacklogFragment : Fragment() {
         observeAddGameResult()
     }
 
-    //todo delete all, deze methode gebruiken
     private fun observeAddGameResult() {
         viewModel.games.observe(viewLifecycleOwner, Observer { games ->
             this@GameBacklogFragment.games.clear()

@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.rayray.madlevel5task2.R
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         fabToggler()
     }
 
-//todo prullenbak in actionbar, via database leeg maken, notifydatasetchanged??
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -48,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             R.id.bin -> {
                 viewModel.deleteAllGames()
-                Toast.makeText(applicationContext, "Deleted all games", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.deleted_games, Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
