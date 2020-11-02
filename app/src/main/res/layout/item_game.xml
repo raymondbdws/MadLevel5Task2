@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:paddingStart="0sp"
+            android:paddingEnd="10sp"
             android:text="Game title"
             android:textSize="24sp"
             android:textStyle="italic"

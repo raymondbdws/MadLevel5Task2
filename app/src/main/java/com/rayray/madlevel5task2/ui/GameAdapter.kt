@@ -24,6 +24,8 @@ class GameAdapter(private val games: List<Game>): RecyclerView.Adapter<GameAdapt
 
             itemView.tvRelease.text = "$day $month $year"
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,5 +43,6 @@ class GameAdapter(private val games: List<Game>): RecyclerView.Adapter<GameAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.databind(games[position])
+
     }
 }

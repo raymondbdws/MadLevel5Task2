@@ -82,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:inputType="datetime"
                 android:hint="@string/day" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:inputType="datetime"
                 android:hint="@string/month" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:inputType="datetime"
                 android:hint="@string/year" />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -23,11 +23,10 @@ import kotlinx.android.synthetic.main.fragment_backlog_game.*
  */
 class GameBacklogFragment : Fragment() {
 
-    private var games: ArrayList<Game> = arrayListOf()
-
     private lateinit var gameAdapter: GameAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    private var games: ArrayList<Game> = arrayListOf()
     private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
@@ -42,7 +41,6 @@ class GameBacklogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRv()
         observeAddGameResult()
-
     }
 
     //todo delete all, deze methode gebruiken
@@ -50,11 +48,20 @@ class GameBacklogFragment : Fragment() {
         viewModel.games.observe(viewLifecycleOwner, Observer { games ->
             this@GameBacklogFragment.games.clear()
             this@GameBacklogFragment.games.addAll(games)
+
+            /**
+             * Sorting by date
+             */
+            this@GameBacklogFragment.games.sortBy {
+                it.releaseDate
+            }
             gameAdapter.notifyDataSetChanged()
+
         })
     }
 
     private fun initRv() {
+
         gameAdapter = GameAdapter(games)
         viewManager = LinearLayoutManager(activity)
 
